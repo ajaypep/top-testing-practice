@@ -14,5 +14,19 @@ const calculator = {
 	multiply(a, b) {
 		return a * b;
 	},
+};
+
+const shiftedLetter = (letter, shiftFactor) => {
+	const oneBelowMinCode = 'A'.charCodeAt(0) - 1;
+	const normalizedCode = letter.toUpperCase().charCodeAt(0) - oneBelowMinCode;
+	let code = (normalizedCode + shiftFactor) % 26;
+	return String.fromCharCode(code + oneBelowMinCode);
 }
-export { capitalize, reverseString, calculator };
+
+const caesarCipher = (str, shiftFactor) => {
+	let result = '';
+	str.split('').forEach(c => result += shiftedLetter(c, shiftFactor))
+	return result
+};
+
+export { capitalize, reverseString, calculator, caesarCipher };
