@@ -20,6 +20,11 @@ test('shift neo by 2 factor', () => {
 test('wrap z to a shift by 1', () => {
 	expect(caesarCipher('abz', 1)).toBe('BCA')
 })
+
 test('wrap z to a shift by 4', () => {
 	expect(caesarCipher('abz', 4)).toBe('EFD')
+})
+
+test('msg includes punctuation', () => {
+	expect(caesarCipher('abz.', 1)).toBe('BCA/')
 })

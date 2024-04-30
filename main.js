@@ -16,6 +16,11 @@ const calculator = {
 	},
 };
 
+const isAlphabet = (a) => {
+	const code = a.toUpperCase().charCodeAt(0);
+	return code >= 65 && code <= 90;
+}
+
 const shiftedLetter = (letter, shiftFactor) => {
 	const oneBelowMinCode = 'A'.charCodeAt(0) - 1;
 	const normalizedCode = letter.toUpperCase().charCodeAt(0) - oneBelowMinCode;
@@ -23,9 +28,15 @@ const shiftedLetter = (letter, shiftFactor) => {
 	return String.fromCharCode(code + oneBelowMinCode);
 }
 
+const shiftedChar = (char, shiftFactor) => {
+	if (isAlphabet(char)) return shiftedLetter(char, shiftFactor);
+	const shiftedCode = (char.charCodeAt(0) + shiftFactor)
+	return String.fromCharCode(shiftedCode);
+}
+
 const caesarCipher = (str, shiftFactor) => {
 	let result = '';
-	str.split('').forEach(c => result += shiftedLetter(c, shiftFactor))
+	str.split('').forEach(c => result += shiftedChar(c, shiftFactor))
 	return result
 };
 
